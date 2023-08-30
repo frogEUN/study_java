@@ -14,6 +14,8 @@ public class First {
 
         System.out.println(Holjjak(1));
 
+        System.out.println(sum(3,4));
+
     }
 
     public static String Holjjak(int n){
@@ -24,4 +26,34 @@ public class First {
             return "홀수";
         }
     }
+
+
+
+
+    public static int sum(int num1, int num2){
+        return num1 + num2;
+    }
+
+    public int gap(int num1, int num2){
+        if (num1>=num2){
+            return num1 - num2;
+        }
+        else{
+            return num2 - num1;
+        }
+    }
+
+    public int multiply(int num1, int num2){
+        return num1 * num2;
+    }
+
+    public int share(int num1, int num2){
+        return num1 / num2;
+    }
+
+    public int rest(int num1, int num2){
+        return num1 % num2;
+    }
+
+
 }
