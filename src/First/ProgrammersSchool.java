@@ -1,66 +1,57 @@
 package First;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+
 public class ProgrammersSchool {
-}
 
-// 나머지 구하기
-class Solution1 {
-    public int solution(int num1, int num2) {
-        int answer = num1 % num2;
-        return answer;
-
-        // 다른 풀이
-//        while (num1 >= num2) {
-//            num1 = num1 - num2;
-//        }
-//        int answer = num1;
-//        return answer;
+    public static void main(String args[]){
+        System.out.println(Solution3.solution(new int[]{1, 1, 1, 1}));
     }
 }
 
-// 중앙값 구하기
-
-
-class Solution2 {
-    public int solution(int[] array) {
-        List<Integer> nums = new ArrayList<>();
-        nums.add(0, array[0]);
-
-        for(int i = 1; i < array.length; i++){
-            boolean temp = true;
-            for(int k = 0; k < nums.size(); k++){
-                if (array[i] <= nums.get(k)){
-                    nums.add(k, array[i]);
-                    temp = false;
-                    break;
+// 최빈값 구하기
+// *내가 풀어본 답
+class Solution3 {
+    public static int solution(int[] array) {
+        if(array.length == 1)
+            return array[0];
+        ArrayList<ArrayList<Integer>> nums = new ArrayList<>();
+        ArrayList<Integer> check = new ArrayList<Integer>();
+        for (int i = 0; i < array.length; i++){
+            if (Collections.frequency(check, array[i]) == 0){
+                check.add(array[i]);
+                var temp = new ArrayList<Integer>();
+                temp.add(array[i]);
+                var count = 0;
+                for (int a : array){
+                    if(a == array[i])
+                        count++;
                 }
-            }
-            if(temp){
-                nums.add(nums.size(), array[i]);
+                temp.add(count);
+                if(nums.size() == 0){
+                    nums.add(temp);
+                }
+                else {
+                    for(int l = 0; l < nums.size(); l++){
+                        // 정렬해서 넣기
+                        if (temp.get(1) >= nums.get(l).get(1)){
+                            nums.add(l, temp);
+                            break;
+                        }
+                        if (l==nums.size()-1){
+                            nums.add(temp);
+                        }
+                    }
+                }
+
             }
         }
-        return nums.get((nums.size())/2);
-    }
-}
-
-
-
-
-// 짝수는 싫어요
-class Solution4 {
-    public int[] solution(int n) {
-        if(n%2==1)
-            n += 1;
-        int temp = 1;
-        int[] nums = new int[n/2];
-        for(int i = 0 ; i < nums.length; i++){
-            nums[i] = temp;
-            temp += 2;
+        if(nums.size() >= 2 && nums.get(0).get(1).equals(nums.get(1).get(1))){
+            return -1;
         }
-        return nums;
+        else{
+            return nums.get(0).get(0);
+        }
 
-        // 아름다운 풀이
-        //return IntStream.rangeClosed(0, n).filter(value -> value % 2 == 1).toArray();
     }
 }
