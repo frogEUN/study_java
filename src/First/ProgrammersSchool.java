@@ -1,55 +1,66 @@
 package First;
-
+import java.util.ArrayList;
+import java.util.List;
 public class ProgrammersSchool {
 }
 
-// 두 수의 나눗셈
+// 나머지 구하기
 class Solution1 {
     public int solution(int num1, int num2) {
-        double answer = (num1 / (num2*1.0)) * 1000;
-        return (int)answer;
+        int answer = num1 % num2;
+        return answer;
+
+        // 다른 풀이
+//        while (num1 >= num2) {
+//            num1 = num1 - num2;
+//        }
+//        int answer = num1;
+//        return answer;
     }
 }
 
-// 숫자 비교하기
+// 중앙값 구하기
+
+
 class Solution2 {
-    public int solution(int num1, int num2) {
-        if(num1 == num2)
-            return 1;
-        else
-            return -1;
+    public int solution(int[] array) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(0, array[0]);
 
-        //int answer = (num1 == num2) ? 1 : -1;
-        //return answer;
-    }
-}
-
-// 분수의 덧셈
-class Solution3 {
-    public int[] solution(int numer1, int denom1, int numer2, int denom2) {
-        int[] answer = new int[2];
-        answer[0] = (numer1 * denom2) + (numer2 * denom1);
-        answer[1] = denom1 * denom2;
-        for (int i = 500; i >= 2; i--){
-            if(answer[0]%i == 0 && answer[1]%i == 0){
-                answer[0] = answer[0] / i;
-                answer[1] = answer[1] / i;
+        for(int i = 1; i < array.length; i++){
+            boolean temp = true;
+            for(int k = 0; k < nums.size(); k++){
+                if (array[i] <= nums.get(k)){
+                    nums.add(k, array[i]);
+                    temp = false;
+                    break;
+                }
+            }
+            if(temp){
+                nums.add(nums.size(), array[i]);
             }
         }
-        return answer;
+        return nums.get((nums.size())/2);
     }
 }
 
-// 배열 두 배 만들기
+
+
+
+// 짝수는 싫어요
 class Solution4 {
-    public int[] solution(int[] numbers) {
-        for(int i = 0; i < numbers.length; i++){
-            numbers[i] = numbers[i] * 2;
+    public int[] solution(int n) {
+        if(n%2==1)
+            n += 1;
+        int temp = 1;
+        int[] nums = new int[n/2];
+        for(int i = 0 ; i < nums.length; i++){
+            nums[i] = temp;
+            temp += 2;
         }
-        return numbers;
+        return nums;
 
-        // 신기한 방법
-        //return Arrays.stream(numbers).map(i -> i * 2).toArray();
+        // 아름다운 풀이
+        //return IntStream.rangeClosed(0, n).filter(value -> value % 2 == 1).toArray();
     }
 }
-
