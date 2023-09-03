@@ -1,22 +1,25 @@
 package First;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
-// 2439번
+// 10952번
 // 문제 요약
-// 입력 : N
-// 출력 : 첫째 줄부터 N번째줄까지 1~n개 * 출력, 오른쪽 정렬
+// 0 0 이 들어올 때까지 A + B
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int n = Integer.parseInt(br.readLine());
-        for (int i = 1; i <= n; i++){
-            String result = " ".repeat(n-i) + "*".repeat(i);
-            bw.write(result);
+        while(true){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            if(a == 0 && b == 0) break;
+            bw.write(String.valueOf(a + b));
             bw.newLine();
         }
         bw.flush();
         bw.close();
     }
+
 }
