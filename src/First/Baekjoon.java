@@ -1,23 +1,21 @@
 package First;
 
 import java.io.*;
+import java.util.*;
 
-// 5597번
+// 3052번
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int[] students = new int[30];
-        for(int k = 0; k < 28; k++){
-            int num = Integer.parseInt(br.readLine());
-            students[num-1] = 1;
-        }
-        for(int i = 0; i < 30; i++){
-            if (students[i] == 0){
-                bw.write(String.valueOf(i + 1));
-                bw.newLine();
+        List<Integer> nums = new ArrayList<>();
+        for(int i=0; i<10; i++){
+            int n = Integer.parseInt(br.readLine()) % 42;
+            if(!nums.contains(n)){
+                nums.add(n);
             }
         }
+        bw.write(String.valueOf(nums.size()));
         bw.flush();
         bw.close();
         br.close();
