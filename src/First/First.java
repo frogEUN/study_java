@@ -1,35 +1,77 @@
 package First;
 
+import java.io.*;
+import java.util.Random;
+import java.util.Scanner;
+
 public class First {
-    // 클래스 > 메서드 > 실행문
-    // 클래스 : 객체 지향 언어세어 프로그램을 개발하는 단위. 적어도 하나의 클래스 필요.
-    // method 메서드 : 코드의 모임
-    public static void main(String[] args) {
-        System.out.println("Hello World");
-        int weight;  // 변수 선언
-        weight = 50;  // 변수 초기화
-        // 초깃값을 통하여 데이터 타입을 추론할 수 있는 var
-        var number = 100;  // 메서드 내부에 있는 변수에 대해서만 사용
-        final double PI;  // 상수, 프로그램 실행 도중 변경할 수 없는 데이터
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Kiriko player = new Kiriko();
+        player.setHp(player.fullHp);
 
-//        for (int i = 2; i <= 9; i++){
-//            for (int k = 1; k <= 9; k++){
-//                System.out.printf("%d x %d = %d\n", i, k, i*k);
-//            }
-//        }
+        System.out.print("당신의 이름을 입력하세요. : ");
+        String name = sc.nextLine();
 
-        gugudan(2, 5);
-        System.out.println();
-        gugudan(6, 9);
+        main : while(true){
+            System.out.println("1) 공격  2) 치유  3) 기술1  4) 기술2  (종료 : 0)");
+            System.out.printf("[%s] 체력 : %d / %d\n", name, player.getHp(), player.fullHp);
+            String choice = sc.nextLine();
+            switch(choice){
+                case "1" :
+                    player.Attack();
+                    break;
+                case "2" :
+                    player.Heal();
+                    break;
+                case "3" :
+                    player.SkillE();
+                    break;
+                case "4" :
+                    player.SkillShift();
+                    break;
+                case "0" : break main;
+                default : System.out.println("올바른 값을 입력하십시오.");
+            }  // end of switch
+            player.BeAttacked();
+        }  // end of while
+    }  // end of main
+}
 
+class Kiriko{
+    private int hp;
+    public int fullHp = 200;
+
+    public void setHp(int hp){
+        this.hp = hp;
+        if(this.hp <= 0) this.hp = 0;
+        else if(this.hp >= fullHp) this.hp = fullHp;
     }
 
-    public static void gugudan(int one, int two){
-        for (int i=1; i<=9; i++){
-            for(int s=one; s<=two; s++){
-                System.out.printf("%d x %d = %d\t", s, i, s*i);
-            }
-            System.out.println();
-        }
+    public int getHp(){
+        return hp;
     }
+
+    public void BeAttacked(){
+        Random rd = new Random();
+        setHp(getHp() - rd.nextInt(11) * 10);
+    }
+
+    public void Attack(){
+        System.out.println("쿠나이 - 쿠나이를 날립니다.");
+    }
+
+    public void Heal(){
+        System.out.println("치유의 부적 - 치유의 힘이 깃든 부적을 날립니다.");
+        setHp(getHp() + 50);
+    }
+
+    public void SkillE(){
+        System.out.println("정화의 방울 - 수호의 힘이 깃든 방울을 던져 해로운 효과를 정화합니다.");
+    }
+
+    public void SkillShift(){
+        System.out.println("순보 - 아군에게 즉시 순간이동합니다.");
+    }
+
 }
