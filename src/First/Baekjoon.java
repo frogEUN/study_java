@@ -3,23 +3,29 @@ package First;
 import java.io.*;
 import java.util.StringTokenizer;
 
-// 10951번
-// 문제 요약
-// 입력이 끝날 때까지 A+B 출력
+// 10810번
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        while (true){
-            String input = br.readLine();
-            if(input == null) break;
-            StringTokenizer st = new StringTokenizer(input);
-            if(!st.hasMoreTokens()) break;
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            bw.write(String.valueOf(a + b));
-            bw.newLine();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int[] baskets = new int[n];
+        for(int k = 0; k < m; k++){
+            StringTokenizer stt = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(stt.nextToken());
+            int end = Integer.parseInt(stt.nextToken());
+            int what = Integer.parseInt(stt.nextToken());
+            for (int i = start; i <= end; i++){
+                baskets[i-1] = what;
+            }
         }
+        String result = "";
+        for(int i: baskets){
+            result = result + String.valueOf(i) + " ";
+        }
+        bw.write(result);
         bw.flush();
         bw.close();
         br.close();
