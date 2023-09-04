@@ -3,7 +3,7 @@ package First;
 import java.io.*;
 import java.util.StringTokenizer;
 
-// 10810번
+// 10813번
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,14 +12,16 @@ public class Baekjoon {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int[] baskets = new int[n];
+        for(int i = 0; i < n; i++){
+            baskets[i] = i+1;
+        }
         for(int k = 0; k < m; k++){
             StringTokenizer stt = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(stt.nextToken());
-            int end = Integer.parseInt(stt.nextToken());
-            int what = Integer.parseInt(stt.nextToken());
-            for (int i = start; i <= end; i++){
-                baskets[i-1] = what;
-            }
+            int one = Integer.parseInt(stt.nextToken()) - 1;
+            int two = Integer.parseInt(stt.nextToken()) - 1;
+            int temp = baskets[one];
+            baskets[one] = baskets[two];
+            baskets[two] = temp;
         }
         String result = "";
         for(int i: baskets){
