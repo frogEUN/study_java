@@ -1,5 +1,4 @@
-package First;
-import java.util.*;
+package first;
 
 public class ProgrammersSchool {
 }
