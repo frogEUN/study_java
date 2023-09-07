@@ -3,31 +3,16 @@ package first;
 import java.io.*;
 import java.util.*;
 
-// 1316번
+// 2941번
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        int result = n;
-        for (int i = 0; i < n; i++){
-            char[] word = br.readLine().toCharArray();
-            List<String> temp = new ArrayList<String>();
-            char preChar;
-            temp.add(String.valueOf(word[0]));
-            char currentChar;
-            for(int j = 1; j<word.length; j++){
-                preChar = word[j-1];
-                currentChar = word[j];
-                if(preChar == currentChar) continue;
-                if(temp.contains(String.valueOf(word[j]))){
-                    result -= 1;
-                    break;
-                }
-                temp.add(String.valueOf(word[j]));
-            }
+        List<String> alpha = Arrays.asList("c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z=");
+        String word = br.readLine();
+        for(String a: alpha){
+            word = word.replace(a, "+");
         }
-        System.out.println(result);
-
+        System.out.println(word.length());
     }  // end of main
 
 
