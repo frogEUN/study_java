@@ -2,23 +2,23 @@ package first;
 
 import java.io.*;
 
-// 2444번
+// 10988번
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int n = Integer.parseInt(br.readLine());
-        for(int i=1; i<=n; i++){
-            bw.write(" ".repeat(n-i) + "*".repeat(i * 2 - 1) + "\n");
-        }
-        for(int i=n-1; i>=1; i--){
-            bw.write(" ".repeat(n-i) + "*".repeat(i * 2 - 1) + "\n");
-        }
-        bw.flush();
-        bw.close();
+        System.out.println(temp(br.readLine().toCharArray()));
         br.close();
     }
 
-
+    private static int temp(char[] word){
+        int l = word.length;
+        for (int i = 0; i<l; i++){
+            if(i == l-1-i) break;
+            if(word[i] != word[l-1-i]){
+                return 0;
+            }
+        }
+        return 1;
+    }
 
 }
