@@ -3,45 +3,29 @@ package first;
 import java.io.*;
 import java.util.StringTokenizer;
 
-// 2738번
+// 2566번
 public class Baekjoon {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        int[][] one = new int[n][m];
-        int[][] two = new int[n][m];
-        for(int nn = 0; nn < n; nn++){
-            st = new StringTokenizer(br.readLine());
-            for(int mm = 0; mm < m; mm++){
-                one[nn][mm] = Integer.parseInt(st.nextToken());
+        int[][] nums = new int[9][9];
+        int max = 0;
+        int max_hang = 0;
+        int max_yeol = 0;
+        for (int h=0; h<9; h++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for(int y=0; y<9; y++){
+                int temp = Integer.parseInt(st.nextToken());
+                nums[h][y] = temp;
+                if(temp>=max){
+                    max = temp;
+                    max_hang = h;
+                    max_yeol = y;
+                }
             }
         }
-        for(int nn = 0; nn < n; nn++){
-            st = new StringTokenizer(br.readLine());
-            for(int mm = 0; mm < m; mm++){
-                two[nn][mm] = Integer.parseInt(st.nextToken());
-            }
-        }
-        int[][] result = new int[n][m];
-        for(int nn = 0; nn < n; nn++){
-            for(int mm = 0; mm < m; mm++){
-                result[nn][mm] = one[nn][mm] + two[nn][mm];
-            }
-        }
-
-        for(int nn = 0; nn < n; nn++){
-            for(int mm = 0; mm < m; mm++){
-                bw.write(String.valueOf(result[nn][mm]) + " ");
-            }
-            bw.newLine();
-        }
-
-        br.close();
-        bw.flush();
-        bw.close();
+        System.out.println(max);
+        String result = (max_hang+1) + " " + (max_yeol+1);
+        System.out.println(result);
 
     }
 
