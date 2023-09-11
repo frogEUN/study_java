@@ -1,7 +1,6 @@
 package first;
 
 import java.io.*;
-import java.util.StringTokenizer;
 
 // 10798번
 public class Baekjoon {
@@ -11,9 +10,8 @@ public class Baekjoon {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         char[][] words = new char[5][15];
         for (int i = 0; i < 5; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
             int l = 0;
-            String word = st.nextToken();
+            String word = br.readLine();
             on: while(true) {
                 try{
                     words[i][l] = word.charAt(l);
