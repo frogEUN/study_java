@@ -1,38 +1,28 @@
 package first;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
-// 10798번
+// 5086번
 public class Baekjoon {
-
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        char[][] words = new char[5][15];
-        for (int i = 0; i < 5; i++){
-            int l = 0;
-            String word = br.readLine();
-            on: while(true) {
-                try{
-                    words[i][l] = word.charAt(l);
-                    l++;
-                }
-                catch(StringIndexOutOfBoundsException e){
-                    break on;
-                }
-
-            }
-        }
-        for (int i=0; i < 15; i++){
-            for(int j = 0; j < 5; j++){
-                if(words[j][i] != '\0')
-                    bw.write(words[j][i]);
-            }
+        while(true){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            if(a == 0 && b == 0) break;
+            if(b % a == 0) bw.write("factor");
+            else if(a % b == 0) bw.write("multiple");
+            else bw.write("neither");
+            bw.newLine();
         }
         bw.flush();
         bw.close();
         br.close();
     }
+
 
 
 }
