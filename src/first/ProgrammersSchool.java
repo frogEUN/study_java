@@ -3,15 +3,12 @@ package first;
 public class ProgrammersSchool {
 }
 
-// 피자 나눠 먹기 (1)
+// 옷가게 할인 받기
 class Solution1 {
-    public int solution(int n) {
-        if(n % 7 == 0)
-            return n / 7;
-        else
-            return n / 7 + 1;
-        
-        // 예술
-        //return (n + 6) / 7;
+    public int solution(int price) {
+        if(price>=500000) return (int)(price * 0.80);
+        else if(price>=300000) return (int)(price * 0.90);
+        else if(price>=100000) return (int)(price * 0.95);
+        return price;
     }
 }
